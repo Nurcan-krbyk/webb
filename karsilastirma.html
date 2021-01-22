@@ -1,0 +1,144 @@
+<html lang=en>
+
+<head >
+    <meta charset="UTF-8">
+    <title> COVİD-19 BİLGİLENDİRME </title>
+    <link rel="stylesheet" href="stylees.css">
+   
+<body>
+    <section>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+        <header>
+
+            <a href="#"><img src="logo.png" class="logo"></a>
+            <ul>
+                <li><a href="YeniTasarim.html">Ana Sayfa</a></li>
+                <li><a href="covid19.html">Covid-19</a></li>
+                <li><a href="karsilastirma.html">Türkiye İngiltere Karşılaştırma</a></li>
+            </ul>
+        </header>
+        <div class="content">
+            <div class="textBox">
+                <br><br>
+            </div>
+        </div>
+
+    </section>
+
+    </script>
+</body>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Static Template</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+        <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+      
+      <body>
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    
+        <script>
+          $(document).ready(() => {});
+        </script>
+        <script>
+          window.onload = function () {
+            var turkeySettings = {
+              async: true,
+              crossDomain: true,
+              url:
+                "https://api.covid19api.com/country/turkey?from=2020-10-01T00%3A00%3A00Z&to=2021-01-15T00%3A00%3A00Z",
+              method: "GET",
+              headers: {
+                "cache-control": "no-cache",
+                "postman-token": "ef0cdd3d-7343-bb20-71bd-c79ffb86035e"
+              }
+            };
+            var ukSettings = {
+              async: true,
+              crossDomain: true,
+              url:
+                "https://api.covid19api.com/country/united-kingdom?from=2020-10-01T00%3A00%3A00Z&to=2021-01-15T00%3A00%3A00Z",
+              method: "GET",
+              headers: {
+                "cache-control": "no-cache",
+                "postman-token": "ef0cdd3d-7343-bb20-71bd-c79ffb86035e"
+              }
+            };
+    
+            $.ajax(turkeySettings).done(function (turkeyResponse) {
+              $.ajax(ukSettings).done(function (ukResponse) {
+                var options = {
+                  animationEnabled: true,
+                  theme: "light2",
+                  title: {
+                    text: "Covid 19 Türkiye - İngiltere vaka sayısı karşılaştırma "
+                  },
+                  axisX: {
+                    valueFormatString: "DD MMM"
+                  },
+                  axisY: {
+                    title: "Data",
+                    suffix: "",
+                    minimum: 0
+                  },
+                  toolTip: {
+                    shared: true
+                  },
+                  legend: {
+                    cursor: "pointer",
+                    verticalAlign: "bottom",
+                    horizontalAlign: "left",
+                    dockInsidePlotArea: true,
+                    itemclick: toogleDataSeries
+                  },
+                  data: [
+                    {
+                      type: "line",
+                      showInLegend: true,
+                      name: "Turkey Confirmed",
+                      markerType: "square",
+                      xValueFormatString: "DD MMM, YYYY",
+                      color: "#F08080",
+                      yValueFormatString: "",
+                      dataPoints: turkeyResponse.map((item) => ({
+                        x: new Date(item.Date),
+                        y: item.Confirmed
+                      }))
+                    },
+                    {
+                      type: "line",
+                      showInLegend: true,
+                      name: "UK Confirmed",
+                      lineDashType: "dash",
+                      yValueFormatString: "",
+                      dataPoints: ukResponse.map((item) => ({
+                        x: new Date(item.Date),
+                        y: item.Confirmed
+                      }))
+                    }
+                  ]
+                };
+                $("#chartContainer").CanvasJSChart(options);
+              });
+            });
+          };
+          function toogleDataSeries(e) {
+            if (
+              typeof e.dataSeries.visible === "undefined" ||
+              e.dataSeries.visible
+            ) {
+              e.dataSeries.visible = false;
+            } else {
+              e.dataSeries.visible = true;
+            }
+            e.chart.render();
+          }
+        </script>
+      </body>
+</head>
+
+
+</html>

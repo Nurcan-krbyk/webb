@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> COVİD-19 BİLGİLENDİRME </title>
+    <link rel="stylesheet" href="stylees.css">
+</head>
+
+<body>
+    <section>
+        <div class="circle"></div>
+        <header>
+
+            <img src="lm4.jpg" class="logo"></a>
+            <ul>
+                <li><a href="YeniTasarim.html">Ana Sayfa</a></li>
+                <li><a href="covid19.html">Covid-19</a></li>
+                <li><a href="karsilastirma.html">Türkiye İngiltere Karşılaştırma</a></li>
+            </ul>
+        </header>
+        <div class="content">
+            <div class="textBox">
+                <br><br><br><br>
+                <h2>Covid-19'u ellerimizle<br><span>YENECEĞİZ</span></h2>
+                <i>ip>İlk olarak Çin’in Wuhan bölgesinde, 2019 yılı Aralık ayının başında görülüp, bu bölgedeki
+                    yetkililer
+                    tarafından tanımlandığı için gayri resmi Wuhan koronavirüsü adıyla da bilinen yeni koronavirüs
+                    solunum yolu enfeksiyonuna neden olan ve insandan insana geçebilen bulaşıcı bir virüstür.<br>
+                    30 Ocak 2020'de CoViD-19, Dünya Sağlık Örgütü tarafından küresel bir sağlık acil durumu ilan
+                    edilmiştir. 11 Mart 2020 tarihinde ise virüs pandemi, yani küresel salgın hastalık olarak ilan
+                    edilmiştir. <br></i>
+                <a href="covid19.html">Daha Fazla Bilgi</a>
+            </div>
+
+            <div class="imgBox">
+                <img src="v3.png" class="covid">
+            </div>
+        </div>
+        <ul class="thumb">
+            <li><img src="v3.png" onclick="imgSlider('v3.png');changeCircleColor('#017143')"></li>
+            <li><img src="v1.png" onclick="imgSlider('v1.png');changeCircleColor('#d1ce0a')"></li>
+            <li><img src="v2.png" onclick="imgSlider('v2.png');changeCircleColor('#031296')"></li>
+        </ul>
+    </section>
+    <script type="text/javascript">
+        function imgSlider(anything) {
+            document.querySelector('.covid').src = anything;
+        }
+        function changeCircleColor(color) {
+            const circle = document.querySelector('.circle');
+            circle.style.background = color;
+        }
+    </script>
+</body>
+
+</html>
